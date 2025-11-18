@@ -4,7 +4,7 @@ A comprehensive, production-focused repository showcasing hands-on projects, sys
 
 This repo is designed to demonstrate full‑stack AI engineering capability — from prototyping to scalable, real-world systems.
 
-# 🚀 What This Repository will cover
+##  🚀 What This Repository will cover
 
 - LLMs: Integration, fine-tuning, evaluation, safety, system design
 
