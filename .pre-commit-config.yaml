@@ -1,19 +1,79 @@
-# See https://pre-commit.com for more information
-# See https://pre-commit.com/hooks.html for a list of available hooks
-
+fail_fast: true
+default_language_version:
+    python: python3.13
+default_stages:
+  - commit
+  - commit-msg
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.1.0
     hooks:
+      - id: commitizen # Enforce Conventional Commits standard
+        stages: [ commit-msg ]
+
+  - repo: https://github.com/python-poetry/poetry
+    rev: '1.8.0'
+    hooks:
+      - id: poetry-check
+      - id: poetry-lock
+        args: ["--no-update"]
+
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-docstring-first # Check docstring exists before imports
+      - id: check-merge-conflict # Check for the existence of files with merge conflict strings
+      - id: check-builtin-literals # Check for the use of dict()/list()/set() instead {}/[]
+      - id: check-yaml # Verify yaml syntax
+        args: ['--unsafe']
+      - id: check-added-large-files # Check commit does not contain large file size
+      - id: check-toml # Verify toml syntax
+      - id: check-json # Verify json syntax
       - id: trailing-whitespace
       - id: end-of-file-fixer
-      - id: check-yaml
-      - id: check-added-large-files
+
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-use-type-annotations # Enforce type annotation instead of type comment
+      - id: python-no-log-warn # Check for deprecated warn() of loggers
+      - id: python-no-eval # Check for eval() function
+      - id: python-check-blanket-noqa # Enforce that noqa annotations always occur with specific codes
+      - id: python-check-blanket-type-ignore # Enforce that # type: ignore annotations always occur with specific codes
+
+  # FORMATTERS
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.19.0
+    hooks:
+      - id: pyupgrade # Upgrade syntax for newer versions of the language
+        args: [--py311-plus]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort # Sort imports automatically
+        args: [ "--profile", "black", "--filter-files" ]
+
   - repo: https://github.com/psf/black
-    rev: 24.3.0
+    rev: 24.10.0
     hooks:
-      - id: black
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
+      - id: black # Code formatting
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
     hooks:
-      - id: isort
+      - id: detect-secrets # Detect secrets placed in code
+        exclude: ".env"
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+      - id: mypy # Check static typing
+        additional_dependencies:
+          - "pydantic>=2.0"
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.1
+    hooks:
+      - id: flake8 # Enforce common style guide
