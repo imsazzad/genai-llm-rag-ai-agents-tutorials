@@ -6,16 +6,16 @@ This repo is designed to demonstrate full‑stack AI engineering capability — 
 
 # 🚀 What This Repository will cover
 
-LLMs: Integration, fine-tuning, evaluation, safety, system design
+- LLMs: Integration, fine-tuning, evaluation, safety, system design
 
-RAG Systems: Vector DBs, embedding models, indexing, retrieval strategies
+- RAG Systems: Vector DBs, embedding models, indexing, retrieval strategies
 
-AI Agents: Tool-use agents, function calling, multi-agent orchestration
+- AI Agents: Tool-use agents, function calling, multi-agent orchestration
 
-GenAI Applications: Chatbots, assistants, workflows, content generation systems
+- GenAI Applications: Chatbots, assistants, workflows, content generation systems
 
-Data Pipelines: Preprocessing, chunking, indexing, monitoring
+- Data Pipelines: Preprocessing, chunking, indexing, monitoring
 
-Production Engineering: Deployment patterns, observability, API frameworks
+- Production Engineering: Deployment patterns, observability, API frameworks
 
-System Design: High-level architecture diagrams, design trade-offs
+- System Design: High-level architecture diagrams, design trade-offs
